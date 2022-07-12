@@ -11,11 +11,11 @@
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(":todo", $param["todo"]);
             $stmt->execute();
+            return intval($this->pdo->lastInsertId());
         }
 
         public function selTodoList() {
-            $sql = "SELECT * FROM t_todo
-                    ORDER BY itodo DESC";
+            $sql = "SELECT * FROM t_todo";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
